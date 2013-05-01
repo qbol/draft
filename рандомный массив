@@ -1,0 +1,65 @@
+//description: функции рандомного заполнения массива
+//             и вывода  
+               
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale>
+using namespace std;
+
+int print_mas (int *pmas, int n)
+{
+    for (int i = 0; i < n; i++) 
+    {
+    cout << i << "   " << pmas[i] <<endl;
+    }
+    return 0;
+}
+
+int rand_mas (int *pmas, int n, int maxrand)
+{
+    //mas - заполлняемый массив, размера n
+    //maxrand максимум для случайных чисел
+    srand(time(0));
+    for (int i = 0; i < n; i++) 
+    {
+    pmas[i] = (rand() % maxrand);
+    //cout << i << "   " << &pmas[i]<<endl;
+    }
+    return 0;
+}
+////////////////////////////////////////////
+
+int menu (int &n, int &maxn)
+{
+    cout << "Введите размер массива: ";
+    cin >> n;
+    
+    printf ("максимальное случайное число: ");
+    cin >> maxn;
+    
+    return 0;
+}
+
+
+////// Basic function //////
+int main ()
+{
+    setlocale(LC_ALL,".1251"); //local
+    int maxn=0;
+    int n=0;
+    int *pmas = (int*) malloc ((n+50)*sizeof(int));
+    
+    //в функциях используется передача параметров
+    menu (n, maxn); //определение условий
+    
+    rand_mas (pmas, n, maxn);
+    
+    print_mas (pmas, n);
+    
+    system ("pause");
+    
+    free(pmas);
+    return 0;    
+ }
+     
